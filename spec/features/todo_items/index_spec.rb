@@ -7,16 +7,16 @@ describe "Viewing todo items" do
   end
   it "displays no items when the todo list is empty" do
     visit_todo_list(todo_list)
-    expect(page.all("ul.todo_items li").size).to eq(0)
+    expect(page.all("td.todo_items li").size).to eq(0)
   end
   it "displays item content when a todo list has items" do
     todo_list.todo_items.create(content: "Milk")
     todo_list.todo_items.create(content: "Eggs")
     visit_todo_list(todo_list)
 
-    expect(page.all("ul.todo_items li").size).to eq(2)
+    expect(page.all("table.todo_items tr").size).to eq(2)
 
-    within "ul.todo_items" do
+    within "table.todo_items" do
       expect(page).to have_content("Milk")
       expect(page).to have_content("Eggs")
     end
