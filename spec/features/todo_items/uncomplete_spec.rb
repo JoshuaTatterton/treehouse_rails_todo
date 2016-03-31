@@ -5,11 +5,15 @@ describe "Uncompleting todo items" do
 
   it "is successful" do
     expect(todo_item.completed_at).not_to be_nil
+
     visit_todo_list(todo_list)
+
     within dom_id_for(todo_item) do
       click_link "Mark Incomplete"
     end
+
     todo_item.reload
+
     expect(todo_item.completed_at).to be_nil
   end
 
@@ -17,9 +21,11 @@ describe "Uncompleting todo items" do
   
     it "asks to be completed" do
       visit_todo_list(todo_list)
+
       within dom_id_for(todo_item) do
         click_link "Mark Incomplete"
       end
+
       within dom_id_for(todo_item) do
         expect(page).to have_link("Mark Complete")
       end
@@ -27,9 +33,11 @@ describe "Uncompleting todo items" do
 
     it "doesn't give the option to mark complete" do 
       visit_todo_list(todo_list)
+
       within dom_id_for(todo_item) do
         click_link "Mark Incomplete"
       end
+      
       within dom_id_for(todo_item) do
         expect(page).not_to have_link("Mark Incomplete")
       end
