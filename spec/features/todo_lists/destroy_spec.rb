@@ -1,4 +1,3 @@
-require "spec_helper"
 
 describe "Deleting todo lists" do
 
