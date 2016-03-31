@@ -1,0 +1,9 @@
+<h1>Completed Todo Lists</h1>
+
+<% @todo_lists.each do |todo_list| %>
+  <div class="todo_list" id="<%= dom_id(todo_list) %>">
+    <% if !todo_list.has_incomplete_items? %>
+      <%= render partial: "todo_list", locals: { todo_list: todo_list } %>
+    <% end %>
+  </div>
+<% end %>

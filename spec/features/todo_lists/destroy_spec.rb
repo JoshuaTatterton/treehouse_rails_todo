@@ -1,4 +1,3 @@
-
 describe "Deleting todo lists" do
 
   let!(:todo_list) { TodoList.create(title: "Shopping", description: "shopping") }

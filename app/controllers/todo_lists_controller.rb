@@ -61,6 +61,14 @@ class TodoListsController < ApplicationController
     end
   end
 
+  def completed
+    @todo_lists = TodoList.all
+  end
+
+  def incomplete
+    @todo_lists = TodoList.all
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_todo_list
