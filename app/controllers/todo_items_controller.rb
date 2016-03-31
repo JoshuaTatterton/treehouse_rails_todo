@@ -51,6 +51,12 @@ class TodoItemsController < ApplicationController
     redirect_to todo_list_todo_items_path, notice: "Todo item marked as complete"
   end
 
+  def incomplete
+    @todo_item = @todo_list.todo_items.find(params[:id])
+    @todo_item.update_attributes(completed_at: nil)
+    redirect_to todo_list_todo_items_path, notice: "Todo item marked as incomplete"
+  end
+
   def url_options
     { todo_list_id: params[:todo_list_id] }.merge(super)
   end

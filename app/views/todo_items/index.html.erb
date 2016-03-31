@@ -13,7 +13,8 @@
       <tr id="<%= dom_id(todo_item) %>">
         <td>
           <% if todo_item.completed? %>
-            Completed at:<%= todo_item.completed_at %>
+            <%= todo_item.completed_at.strftime("Completed at: %M:%H, %d/%m/%y") %>
+            <%= link_to "Mark Incomplete", incomplete_todo_list_todo_item_path(todo_item), method: :patch %>
           <% else %>
             <%= link_to "Mark Complete", complete_todo_list_todo_item_path(todo_item), method: :patch %>
           <%end%>
@@ -25,9 +26,9 @@
         </td>
       </tr>
     <% end %>
+    <p>
+      <%= link_to "New Todo Item", new_todo_list_todo_item_path %>
+    </p>
   </tbody>
 </table>
 
-<p>
-  <%= link_to "New Todo Item", new_todo_list_todo_item_path %>
-</p>
