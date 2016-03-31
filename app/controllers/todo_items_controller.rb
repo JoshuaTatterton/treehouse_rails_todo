@@ -16,7 +16,7 @@ class TodoItemsController < ApplicationController
       redirect_to todo_list_todo_items_path
     else
       flash[:error] = "There was a problem adding that todo list item."
-      redirect action: :new
+      render action: :new
     end
   end
 
