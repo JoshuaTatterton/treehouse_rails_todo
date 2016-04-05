@@ -1,4 +1,3 @@
-require "spec_helper"
 
 describe "Editing todo lists" do
 
@@ -16,21 +15,25 @@ describe "Editing todo lists" do
 
   it "displays an error with no title" do
     update_todo_list(todo_list: todo_list, title: "")
+
     expect(page).to have_content("error")
   end
 
   it "displays an error with title too short" do
     update_todo_list(todo_list: todo_list, title: "hi")
+
     expect(page).to have_content("error")
   end
 
   it "displays an error with no description" do
     update_todo_list(todo_list: todo_list, description: "")
+
     expect(page).to have_content("error")
   end
 
   it "displays an error with description too short" do
     update_todo_list(todo_list: todo_list, description: "hi")
+    
     expect(page).to have_content("error")
   end
 

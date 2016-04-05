@@ -1,2 +1,34 @@
-<h1>TodoItems#index</h1>
-<p>Find me in app/views/todo_items/index.html.erb</p>
+<h1><%= @todo_list.title %></h1>
+
+<table class="todo_items">
+  <thead>
+    <tr>
+      <th class="completed">Completed?</th>
+      <th class="content">Content</th>
+      <th class="functions">Functions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @todo_list.todo_items.each do |todo_item| %>
+      <tr id="<%= dom_id(todo_item) %>">
+        <td>
+          <% if todo_item.completed? %>
+            <%= todo_item.completed_at.strftime("Completed at: %M:%H, %d/%m/%y") %>
+            <%= link_to "Mark Incomplete", incomplete_todo_list_todo_item_path(todo_item), method: :patch %>
+          <% else %>
+            <%= link_to "Mark Complete", complete_todo_list_todo_item_path(todo_item), method: :patch %>
+          <%end%>
+        </td>
+        <td><%= todo_item.content %></td>
+        <td>
+          <%= link_to "Edit", edit_todo_list_todo_item_path(todo_item) %>
+          <%= link_to "Delete", todo_list_todo_item_path(todo_item), method: :delete, data: { confirm: "Are you sure?" } %>
+        </td>
+      </tr>
+    <% end %>
+    <p>
+      <%= link_to "New Todo Item", new_todo_list_todo_item_path %>
+    </p>
+  </tbody>
+</table>
+

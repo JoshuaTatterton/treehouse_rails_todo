@@ -61,6 +61,20 @@ class TodoListsController < ApplicationController
     end
   end
 
+  def completed
+    @todo_lists = TodoList.all.inject([]) do |result, todo_list|
+      result << todo_list if !todo_list.has_incomplete_items?
+      result
+    end
+  end
+
+  def incomplete
+    @todo_lists = TodoList.all.inject([]) do |result, todo_list|
+      result << todo_list if todo_list.has_incomplete_items?
+      result
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_todo_list
